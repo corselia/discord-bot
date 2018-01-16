@@ -3,10 +3,10 @@ require 'rest-client'
 require 'json'
 
 def init_bot
-  @toran_castle_bot = Discordrb::Commands::CommandBot.new(
-    token: ENV['TORAN_CASTLE_TOKEN'],
-    client_id: ENV['TORAN_CASTLE_CLIENT_ID'],
-    prefix: ENV['TORAN_CASTLE_PREFIX'],
+  @shiratackey_bot = Discordrb::Commands::CommandBot.new(
+    token: ENV['SHIRATACKEY_TOKEN'],
+    client_id: ENV['SHIRATACKEY_CLIENT_ID'],
+    prefix: ENV['SHIRATACKEY_PREFIX'],
   )
 end
 
@@ -60,20 +60,20 @@ def weather_location_prefecture(json_data)
 end
 
 def bot_command
-  @toran_castle_bot.command :greet do |event|
+  @shiratackey_bot.command :greet do |event|
     # event.send_message("ちーっす、@#{event.user.id}")
     event.send_message("ちーっす、#{event.user.mention} ")
   end
 
-  @toran_castle_bot.command :weather do |event|
+  @shiratackey_bot.command :weather do |event|
     event.send_message("#{weather_description(weather_base_data_json)}")
   end
 
-  @toran_castle_bot.command :weather_today do |event|
+  @shiratackey_bot.command :weather_today do |event|
     event.send_message("#{@today_info}")
   end
 
-  @toran_castle_bot.command :weather_tomorrow do |event|
+  @shiratackey_bot.command :weather_tomorrow do |event|
     event.send_message("#{@tomorrow_info}")
   end
 end
@@ -83,4 +83,4 @@ init_bot
 weather_forcasts # @today_info と @tomorrow_info が定義される
 bot_command
 
-@toran_castle_bot.run
+@shiratackey_bot.run
